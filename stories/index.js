@@ -165,26 +165,24 @@ storiesOf("Button", module)
       InterviewerList interviewers = {
         interviewers
       }
-      interviewer = {
-        3
-      }
+      interviewer = {3}
+
       setInterviewer = {
         action("setInterviewer")
       }
       />
     ));
 
-/**************************************************** */
+/************************************Stories for Appointment**************** */
 
-  // storiesOf("Appointment", module)
-  // storiesOf("Appointment", module)
-  //   .addParameters({
-  //     //using backgrd add-on to set the Storybook
-  //   backgrounds: [{ name: "white", value: "#fff", default: true }]
-  //   })
-  //   //adding a story that renders the Appointment component with no props.
-  //   .add("Appointment", () => <Appointment />)
+  storiesOf("Appointment", module)
+  storiesOf("Appointment", module)
+    .addParameters({
+      //using backgrd add-on to set the Storybook
+    backgrounds: [{ name: "white", value: "#fff", default: true }]
+    })
+    //adding a story that renders the Appointment component with no props.
+    .add("Appointment", () => <Appointment />)
 
-  //   //adding a story that renders the Appointment component and passes it a time prop.
-  //   .add("Appointment", () => <Appointment
-  //   time />)
+    //adding a story that renders the Appointment component and passes it a time prop.
+    .add("Appointment with Time", () => <Appointment time = "12pm" />)
