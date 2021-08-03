@@ -14,6 +14,11 @@ import InterviewerList from "components/InterviewerList"
 
 import Appointment from "components/Appointment/index.js";
 
+import Header from "components/Appointment/Header.js"
+import Empty from "components/Appointment/Empty.js"
+
+/*--------------------A story is a function that returns a React element-----------*/
+
 storiesOf("Button", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -186,3 +191,10 @@ storiesOf("Button", module)
 
     //adding a story that renders the Appointment component and passes it a time prop.
     .add("Appointment with Time", () => <Appointment time = "12pm" />)
+    
+    //Header component is the child of Appointment component, its storied are chained to Appntmnt stories
+
+    .add("Header", () => <Header time="12pm" />)
+
+    //Empty component
+    .add("Empty", () => <Empty onAdd = {action ("onAdd")} />)
