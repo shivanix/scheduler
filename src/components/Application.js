@@ -33,7 +33,8 @@ export default function Application(props) {
   alt="Interview Scheduler"
 />
 <hr className="sidebar__separator sidebar--centered" />
-<nav className="sidebar__menu"><DayList
+<nav className="sidebar__menu">
+  <DayList
   days={days}
   day={day_}
   setDay={setDay_}

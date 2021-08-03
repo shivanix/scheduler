@@ -16,3 +16,4 @@ let interviewerClass = classNames('interviewers__item', {'interviewers__item--se
   {props.selected && props.name}
 </li>);
 }
+
