@@ -12,10 +12,14 @@ import DayList from "components/DayList";
 import InterviewerListItem from "components/InterviewerListItem";
 import InterviewerList from "components/InterviewerList"
 
-import Appointment from "components/Appointment/index.js";
+import Appointment from "components/Appointment/index";
 
-import Header from "components/Appointment/Header.js"
-import Empty from "components/Appointment/Empty.js"
+import Header from "components/Appointment/Header"
+import Empty from "components/Appointment/Empty"
+import Show from "components/Appointment/Show"
+import Confirm from "components/Appointment/Confirm"
+import Status from "components/Appointment/Status"
+import Error from "components/Appointment/Error"
 
 /*--------------------A story is a function that returns a React element-----------*/
 
@@ -178,7 +182,7 @@ storiesOf("Button", module)
       />
     ));
 
-/************************************Stories for Appointment**************** */
+/*--------------------------------------Stories for Appointment-----------------------*/
 
   storiesOf("Appointment", module)
   storiesOf("Appointment", module)
@@ -192,9 +196,38 @@ storiesOf("Button", module)
     //adding a story that renders the Appointment component and passes it a time prop.
     .add("Appointment with Time", () => <Appointment time = "12pm" />)
     
-    //Header component is the child of Appointment component, its storied are chained to Appntmnt stories
+    //Header component is the child of Appointment component, its stories are chained to Appntmnt stories
+    .add("Header", () => < Header/>)
+    .add("Header with Time", () => <Header time="12pm" />)
 
-    .add("Header", () => <Header time="12pm" />)
+    //Empty story
+    .add("Empty", () => <Empty />)
+    .add("Empty on Click", () => <Empty onAdd = {action ("onAdd")} />)
 
-    //Empty component
-    .add("Empty", () => <Empty onAdd = {action ("onAdd")} />)
+    //Show stories
+    .add("Show Clickable", () => < Show 
+    student = "Lydia Miller-Jones"
+    interviewer={interviewer}
+    onEdit = {action ("onEdit")}
+    onDelete = {action("onDelete")}
+    />)
+    
+    //Confirm stories
+    .add("Confirm", () => <Confirm
+    message="Delete the appointment?"
+    onConfirm={action("onConfirm")}
+    onCancel={action("onCancel")}
+  />)
+
+    // Status story
+    .add("Status", () => < Status/>)
+    .add("Status deleting", () => < Status
+       message="Deleting"
+    />)
+
+    //Error story
+    .add("Error", () => < Error/>)
+    .add("Error", () => < Error
+      message="Could not delete appointment"
+      onClose={action("onClose")}
+    />)
