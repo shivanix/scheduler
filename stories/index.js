@@ -20,6 +20,7 @@ import Show from "components/Appointment/Show"
 import Confirm from "components/Appointment/Confirm"
 import Status from "components/Appointment/Status"
 import Error from "components/Appointment/Error"
+import Form from "components/Appointment/Form"
 
 /*--------------------A story is a function that returns a React element-----------*/
 
@@ -57,7 +58,7 @@ storiesOf("Button", module)
   ));
 
 
-/*----------------------------------------------------------*/
+/*----------------------------Day List stories------------------------*/
   const days = [
     {
       id: 1,
@@ -162,23 +163,14 @@ storiesOf("Button", module)
       }]
     })
     .add("Initial", () => ( <
-      InterviewerList interviewers = {
-        interviewers
-      }
-      setInterviewer = {
-        action("setInterviewer")
-      }
+      InterviewerList interviewers = {interviewers}
+      setInterviewer = {action("setInterviewer")}
       />
     ))
     .add("Preselected", () => ( <
-      InterviewerList interviewers = {
-        interviewers
-      }
+      InterviewerList interviewers = {interviewers}
       interviewer = {3}
-
-      setInterviewer = {
-        action("setInterviewer")
-      }
+      setInterviewer = {action("setInterviewer")}
       />
     ));
 
@@ -225,9 +217,26 @@ storiesOf("Button", module)
        message="Deleting"
     />)
 
-    //Error story
+    //Error stories
     .add("Error", () => < Error/>)
     .add("Error", () => < Error
       message="Could not delete appointment"
       onClose={action("onClose")}
+    />)
+
+    //Form stories
+    .add("Form Edit", () => < Form
+    name="Lydia Miller-Jones"
+    interviewers={interviewers}
+    interviewer={interviewer.id}
+    onSave={action("onSave")}
+    onCancel={action("onCancel")}
+    
+    />)
+
+    .add("Form Create", () => < Form
+    interviewers={interviewers}
+    onSave={action("onSave")}
+    onCancel={action("onCancel")}
+    
     />)
