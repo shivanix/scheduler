@@ -6,66 +6,66 @@ import "components/Application.scss";
 import DayList from "./DayList";
 
 import Appointment from "./Appointment";
-import axios from "axios";
+import { getAppointmentsForDay } from "helpers/selectors";
 
 /*-------------------------------------------------------------------appointments-----------------------------*/
-const appointments = [
-  {
-    id: 1,
-    time: "12pm",
-  },
-  {
-    id: 2,
-    time: "1pm",
-    interview: {
-      student: "Lydia Miller-Jones",
-      interviewer: {
-        id: 1,
-        name: "Sylvia Palmer",
-        avatar: "https://i.imgur.com/LpaY82x.png",
-      }
-    }
-  },
+// const appointments = [
+//   {
+//     id: 1,
+//     time: "12pm",
+//   },
+//   {
+//     id: 2,
+//     time: "1pm",
+//     interview: {
+//       student: "Lydia Miller-Jones",
+//       interviewer: {
+//         id: 1,
+//         name: "Sylvia Palmer",
+//         avatar: "https://i.imgur.com/LpaY82x.png",
+//       }
+//     }
+//   },
 
-  {
-    id: 3,
-    time: "2pm",
-    interview: {
-      student: "Zingiber officinalis",
-      interviewer:{
-        id: 2,
-        name: "Tori Malcolm",
-        avatar: "https://i.imgur.com/Nmx0Qxo.png"
-      }
-    }
-  },
+//   {
+//     id: 3,
+//     time: "2pm",
+//     interview: {
+//       student: "Zingiber officinalis",
+//       interviewer:{
+//         id: 2,
+//         name: "Tori Malcolm",
+//         avatar: "https://i.imgur.com/Nmx0Qxo.png"
+//       }
+//     }
+//   },
 
-  {
-    id: 4,
-    time: "3pm",
-    interview: {
-      student: "Anton Van Leeuwenhoek",
-      interviewer:     {
-        id: 5,
-        name: "Sven Jones",
-        avatar: "https://i.imgur.com/twYrpay.jpg"
-      }
-    }
-  },
+//   {
+//     id: 4,
+//     time: "3pm",
+//     interview: {
+//       student: "Anton Van Leeuwenhoek",
+//       interviewer:     {
+//         id: 5,
+//         name: "Sven Jones",
+//         avatar: "https://i.imgur.com/twYrpay.jpg"
+//       }
+//     }
+//   },
 
-  {
-    id: 5,
-    time: "4pm",
-    interview: {
-      student: "Schleiden",
-      interviewer: {
-        id: 4,
-        name: "Cohana Roy",
-        avatar: "https://i.imgur.com/FK8V841.jpg"
-      }
-    }
-  }
-];
+//   {
+//     id: 5,
+//     time: "4pm",
+//     interview: {
+//       student: "Schleiden",
+//       interviewer: {
+//         id: 4,
+//         name: "Cohana Roy",
+//         avatar: "https://i.imgur.com/FK8V841.jpg"
+//       }
+//     }
+//   }
+// ];
 
 /*-----------------------------------days data--------------------------------------------*/
 // const days = [
@@ -87,17 +87,39 @@ const appointments = [
 // ];
 /*-------------------------------------------------------------------------------*/
 
-export default function Application(props) {
-  const [day_, setDay_] = useState("Monday");
-  const [days, setDays] = useState([]);
+export default function Application() {
+  const [state, setState] = useState({
+    day: "Monday",
+    days: [],
+    appointments: []
+  });
 
-  useEffect(() => {
-Axios.get(`/api/days`).then((response) =>{
-// console.log("", response);
+  const setDay = day => setState(prev => ({ ...prev, day }));
+  // const setDays = days => setState(prev => ({ ...prev, days }));
+  // const setAppointments = appointments => setState(prev => ({ ...prev, appointments }));
+  
+useEffect(() => {
+  Promise.all([
+    Axios.get(`/api/days`),
+    Axios.get(`/api/appointments`),
+  ]).then((responses) => {
 
-  setDays([...response.data])
-})
-  }, [])
+    //responses stores all the reponses in an order in an array
+    // responses[0] would be the first reponse; responses[1] would be the 2nd response
+    // we want the data from each of the response objects, we access that using '.data'
+
+    setState(prev => ({
+      ...prev,
+      days: responses[0].data,
+      appointments: responses[1].data
+    }));
+
+    const [first, second] = responses;
+    console.log("one&2****", first, second);
+    console.log("#STATE#", state);
+  });
+
+}, [])
 
   return (
     <main className="layout">
@@ -109,10 +131,11 @@ Axios.get(`/api/days`).then((response) =>{
 />
 <hr className="sidebar__separator sidebar--centered" />
 <nav className="sidebar__menu">
+
   <DayList
-  days={days}
-  day={day_}
-  setDay={setDay_}
+  days={state.days}
+  day={state.day}
+  setDay={setDay}
 /></nav>
 <img
   className="sidebar__lhl sidebar--centered"
@@ -121,7 +144,7 @@ Axios.get(`/api/days`).then((response) =>{
 />
       </section>
       <section className="schedule">
-        {appointments.map((appointment) => {
+        {getAppointmentsForDay(state, state.day).map((appointment) => {
           return(<Appointment key={appointment.id} {...appointment} />
   )}
   )}<Appointment key="last" time="5pm" />
