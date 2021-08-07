@@ -24,14 +24,11 @@ for (const id of filteredIDs) {
   if(state.appointments[id]){
     filteredAppointments.push(state.appointments[id]);
   }
-
-
-
 }
 
-console.log("filteredDays: ", filteredDays);
-console.log("filteredIDs: ", filteredIDs);
-console.log("filteredAppointments: ", filteredAppointments);
+// console.log("filteredDays: ", filteredDays);
+// console.log("filteredIDs: ", filteredIDs);
+// console.log("filteredAppointments: ", filteredAppointments);
 return filteredAppointments;
 }
 
