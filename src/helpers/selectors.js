@@ -1,4 +1,4 @@
-export function getAppointmentsForDay(state, day) {
+ function getAppointmentsForDay(state, day) {
 
 let filteredDays = [];
 let filteredIDs = [];
@@ -32,3 +32,31 @@ for (const id of filteredIDs) {
 return filteredAppointments;
 }
 
+
+
+/*------------------------------------------------------ */
+
+function getInterview(state, interview) {
+console.log("stateeeeeee", state);
+console.log("interviewObject", interview);  
+
+// console.log("dffffffffff", state.interviewers["1"]);
+
+let output = {};
+
+try{
+if (state.interviewers[interview.interviewer]) {
+  output["student"] = interview.student;
+  output["interviewer"] = state.interviewers[interview.interviewer];
+
+  return output;
+}
+}
+catch(err){
+  // console.log("erorrrrrrrr", err);
+  return null
+}
+
+}
+
+export {getAppointmentsForDay, getInterview}
