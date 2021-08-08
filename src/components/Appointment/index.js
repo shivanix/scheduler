@@ -18,7 +18,8 @@ export default function Appointment(props){
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
-
+// console.log("bazingaaaaaaaaaa", props);
+// console.log("bazingaaaaaaaaaa###Mode", mode);
   return (<article className="appointment">
     <Header time={props.time}/>
     {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} 
