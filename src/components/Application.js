@@ -6,7 +6,7 @@ import "components/Application.scss";
 import DayList from "./DayList";
 
 import Appointment from "./Appointment";
-import { getAppointmentsForDay } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview } from "helpers/selectors";
 
 
 export default function Application() {
@@ -16,6 +16,9 @@ export default function Application() {
     appointments: [],
     interviewers: {}
   });
+
+  const appointments = getAppointmentsForDay(state, state.day);
+  
 
   const setDay = day => setState(prev => ({ ...prev, day }));
   // const setDays = days => setState(prev => ({ ...prev, days }));
@@ -32,6 +35,8 @@ useEffect(() => {
     // responses[0] would be the first reponse; responses[1] would be the 2nd response
     // we want the data from each of the response objects, we access that using '.data'
 
+
+    //Updating the states with the responses
     setState(prev => ({
       ...prev,
       days: responses[0].data,
@@ -44,6 +49,7 @@ useEffect(() => {
     // console.log("one&2****", first, second, third);
     // console.log("#STATE#", state);
     console.log("interviewers", third.data);
+    // console.log(responses[2].data);
   });
 
 }, [])
@@ -71,8 +77,14 @@ useEffect(() => {
 />
       </section>
       <section className="schedule">
-        {getAppointmentsForDay(state, state.day).map((appointment) => {
-          return(<Appointment key={appointment.id} {...appointment} />
+        
+        {appointments.map((appointment) => {
+          const interview = getInterview(state, appointment.interview);
+          return(<Appointment 
+          key={appointment.id} 
+          id={appointment.id}
+          time={appointment.time}
+          interview={interview} />
   )}
   )}<Appointment key="last" time="5pm" />
       </section>
