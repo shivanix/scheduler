@@ -6,7 +6,7 @@ import "components/Application.scss";
 import DayList from "./DayList";
 
 import Appointment from "./Appointment";
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
 
 export default function Application() {
@@ -18,6 +18,7 @@ export default function Application() {
   });
 
   const appointments = getAppointmentsForDay(state, state.day);
+  const interviewers = getInterviewersForDay(state, state.day);
   
 
   const setDay = day => setState(prev => ({ ...prev, day }));
@@ -48,7 +49,7 @@ useEffect(() => {
     const [first, second, third] = responses;
     // console.log("one&2****", first, second, third);
     // console.log("#STATE#", state);
-    console.log("interviewers", third.data);
+    // console.log("interviewers", third.data);
     // console.log(responses[2].data);
   });
 
@@ -84,7 +85,8 @@ useEffect(() => {
           key={appointment.id} 
           id={appointment.id}
           time={appointment.time}
-          interview={interview} />
+          interview={interview}
+          interviewers={interviewers} />
   )}
   )}<Appointment key="last" time="5pm" />
       </section>
