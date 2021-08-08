@@ -25,6 +25,7 @@ useEffect(() => {
   Promise.all([
     Axios.get(`/api/days`),
     Axios.get(`/api/appointments`),
+    Axios.get(`/api/interviewers`)
   ]).then((responses) => {
 
     //responses stores all the reponses in an order in an array
@@ -34,12 +35,15 @@ useEffect(() => {
     setState(prev => ({
       ...prev,
       days: responses[0].data,
-      appointments: responses[1].data
+      appointments: responses[1].data,
+      interviewers: responses[2].data,
+
     }));
 
-    const [first, second] = responses;
-    console.log("one&2****", first, second);
-    console.log("#STATE#", state);
+    const [first, second, third] = responses;
+    // console.log("one&2****", first, second, third);
+    // console.log("#STATE#", state);
+    console.log("interviewers", third.data);
   });
 
 }, [])
