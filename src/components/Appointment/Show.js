@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Show(props){
-// console.log("propssssssss", props.student);
+// console.log("propssssssss", props);
 
 
   return (<main className="appointment__card appointment__card--show">
