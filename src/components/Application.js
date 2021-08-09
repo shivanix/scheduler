@@ -18,7 +18,7 @@ export default function Application() {
   });
 
   const appointments = getAppointmentsForDay(state, state.day);
-  const interviewers = getInterviewersForDay(state, state.day);
+ 
 
   /*----------------------------Func bookInterview------------------*/
   
@@ -34,12 +34,24 @@ export default function Application() {
       [id]: appointment
     };
     console.log(id, interview);
-    setState({
-      ...state,
-      appointments
-    });
-  }
+
+     return Axios.put(`/api/appointments/${id}`,{
+      interview
+    })
+    .then((response) => {
+        setState({
+          ...state,
+          appointments
+        });
+        
   
+      })
+    
+
+ 
+    
+  }
+
 /*--------------------------------------------------------------------- */
 
   const setDay = day => setState(prev => ({ ...prev, day }));
@@ -65,7 +77,7 @@ useEffect(() => {
 
     }));
 
-    const [first, second, third] = responses;
+    // const [first, second, third] = responses;
     // console.log("one&2****", first, second, third);
     // console.log("#STATE#", state);
     // console.log("interviewers", third.data);
@@ -100,6 +112,7 @@ useEffect(() => {
         
         {appointments.map((appointment) => {
           const interview = getInterview(state, appointment.interview);
+          const interviewers = getInterviewersForDay(state, state.day);
           return(<Appointment 
          
           key={appointment.id} 
