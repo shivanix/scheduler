@@ -17,6 +17,7 @@ const SHOW = "SHOW";
 const CREATE = "CREATE";
 const SAVING = "SAVING";
 const DELETING = "DELETING";
+const CONFIRM = "CONFIRM"
 
 export default function Appointment(props){
   const { mode, transition, back } = useVisualMode(
@@ -48,11 +49,11 @@ function save(name, interviewer) {
   console.log('id: ', props.id);
 }
 
-/*---------------------Deleting func--------------------- */
+/*---------------------Func deleting------------------- */
 
 function deleting(){
 
-   transition(DELETING);
+  transition(DELETING);
 
   props.cancelInterview(props.id)
   .then (() =>{
@@ -60,7 +61,13 @@ function deleting(){
   })
 }
 
+/*-----------------------Func confirmDelete---------------------- */
 
+
+function confirmDelete () {
+
+  transition(CONFIRM);
+}
 
 return (<article className="appointment">
   <Header time={props.time}/>
@@ -71,7 +78,7 @@ return (<article className="appointment">
   <Show
     student={props.interview.student}
     interviewer={props.interview.interviewer}
-    onDelete={deleting}
+    onDelete={confirmDelete}
   />
 }
 
@@ -83,14 +90,14 @@ onCancel={back}
 />
 )}
 
-{/* {mode === CONFIRM &&
+{mode === CONFIRM &&
 <Confirm
-message={props.message}
-onCancel={back}
+message={`Are you really sure you want to nuke this interview? 🤔`}
 onConfirm={deleting}
+onCancel={back}
 
 />
-} */}
+}
 
 {mode === SAVING && 
 <Status
