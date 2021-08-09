@@ -5,10 +5,10 @@ import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
 
 export default function Form (props){
-  //  console.log("#FORM PROPS#", props);
+   console.log("#FORM PROPS#", props);
 
   const [name, setName] = useState(props.name || "");
-  const [interviewer, setInterviewer] = useState(props.interviewer || null);
+  const [interviewer, setInterviewer] = useState(props.interviewer.id || null);
   
   // console.log("ffffffffffffffffffffff", props.interviewer);
 
@@ -31,7 +31,7 @@ export default function Form (props){
   setInterviewer(interviewer_id)
   }
 
-  console.log("%%%%%%%%----", props.interviewers);
+  // console.log("%%%%%%%%----", props.interviewers);
 
 return (
   <main className="appointment__card appointment__card--create">
