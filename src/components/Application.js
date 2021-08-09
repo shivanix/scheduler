@@ -35,25 +35,36 @@ export default function Application() {
     };
     console.log(id, interview);
 
-     return Axios.put(`/api/appointments/${id}`,{
-      interview
-    })
+     return Axios.put(`/api/appointments/${id}`,{interview})
     .then((response) => {
         setState({
           ...state,
           appointments
         });
-        
-  
       })
-    
-
- 
-    
   }
 
-/*--------------------------------------------------------------------- */
+/*---------------------------cancelInterview func-------------------------- */
 
+function cancelInterview (id) {
+  const appointment = {
+    ...state.appointments[id],
+    interview: null
+  };
+
+  const appointments = {
+    ...state.appointments,
+    [id]: appointment
+  };
+
+  return Axios.delete(`/api/appointments/${id}`)
+  .then((response) => {
+    setState({...state,
+      appointments})
+  });
+}
+
+/*---------------------------------------------------------------- */
   const setDay = day => setState(prev => ({ ...prev, day }));
   
 useEffect(() => {
@@ -114,13 +125,13 @@ useEffect(() => {
           const interview = getInterview(state, appointment.interview);
           const interviewers = getInterviewersForDay(state, state.day);
           return(<Appointment 
-         
           key={appointment.id} 
           id={appointment.id}
           time={appointment.time}
           interview={interview}
           interviewers={interviewers}
-          bookInterview = {bookInterview} />
+          bookInterview = {bookInterview}
+          cancelInterview = {cancelInterview} />
   )}
   )}<Appointment bookInterview = {bookInterview} key="last" time="5pm" />
       </section>
