@@ -8,7 +8,7 @@ export default function Form (props){
    console.log("#FORM PROPS#", props);
 
   const [name, setName] = useState(props.name || "");
-  const [interviewer, setInterviewer] = useState(props.interviewer.id || null);
+  const [interviewer, setInterviewer] = useState(props.interviewer && props.interviewer.id || null);
   
   // console.log("ffffffffffffffffffffff", props.interviewer);
 
@@ -27,7 +27,6 @@ export default function Form (props){
   } 
 
   const onChangeInterviewer = (interviewer_id) => {
-     //console.log("interviewerrrrrrrrrrrrr", interviewer_id);
   setInterviewer(interviewer_id)
   }
 
