@@ -23,8 +23,6 @@ export default function Form (props){
 
   }
   const onChangeName = (event) => {
-    // console.log("-------", event.target.value);
-    // console.log("----#####---", event.target);
     setName(event.target.value)
   } 
 
@@ -32,6 +30,8 @@ export default function Form (props){
      //console.log("interviewerrrrrrrrrrrrr", interviewer_id);
   setInterviewer(interviewer_id)
   }
+
+  console.log("%%%%%%%%----", props.interviewers);
 
 return (
   <main className="appointment__card appointment__card--create">
@@ -50,7 +50,10 @@ return (
         
       />
     </form>
-    <InterviewerList interviewers={props.interviewers} interviewer={interviewer} setInterviewer = {onChangeInterviewer} />
+    <InterviewerList
+    interviewers={props.interviewers}
+    interviewer={interviewer}
+    setInterviewer = {onChangeInterviewer} />
   </section>
 
   {/* 444-----  */}
@@ -59,7 +62,7 @@ return (
   <section className="appointment__card-right">
     <section className="appointment__actions">
       <Button danger onClick = {Cancel}>Cancel</Button>
-      <Button confirm onClick = {props.onSave}>Save</Button>
+      <Button confirm onClick = {()=> props.onSave(name, interviewer)}>Save</Button>
     </section>
   </section>
 </main>

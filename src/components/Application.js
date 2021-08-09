@@ -11,7 +11,7 @@ import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "help
 
 export default function Application() {
   const [state, setState] = useState({
-    day: "Monday",
+     day: "Monday",
     days: [],
     appointments: [],
     interviewers: {}
@@ -19,11 +19,30 @@ export default function Application() {
 
   const appointments = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersForDay(state, state.day);
+
+  /*----------------------------Func bookInterview------------------*/
   
+  function bookInterview(id, interview) {
+
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    console.log(id, interview);
+    setState({
+      ...state,
+      appointments
+    });
+  }
+  
+/*--------------------------------------------------------------------- */
 
   const setDay = day => setState(prev => ({ ...prev, day }));
-  // const setDays = days => setState(prev => ({ ...prev, days }));
-  // const setAppointments = appointments => setState(prev => ({ ...prev, appointments }));
   
 useEffect(() => {
   Promise.all([
@@ -82,13 +101,15 @@ useEffect(() => {
         {appointments.map((appointment) => {
           const interview = getInterview(state, appointment.interview);
           return(<Appointment 
+         
           key={appointment.id} 
           id={appointment.id}
           time={appointment.time}
           interview={interview}
-          interviewers={interviewers} />
+          interviewers={interviewers}
+          bookInterview = {bookInterview} />
   )}
-  )}<Appointment key="last" time="5pm" />
+  )}<Appointment bookInterview = {bookInterview} key="last" time="5pm" />
       </section>
     </main>
   );
