@@ -53,9 +53,9 @@ function save(name, interviewer) {
   console.log('id: ', props.id);
 }
 
-/*---------------------Func deleting---------------------- */
+/*---------------------Func destroy---------------------- */
 
-function deleting(){
+function destroy(){
 
   transition(DELETING);
 
@@ -120,7 +120,7 @@ return (<article className="appointment">
 {mode === CONFIRM_DELETE &&
   <Confirm
     message={`Are you really sure you want to nuke this interview? 🤔`}
-    onConfirm={deleting}
+    onConfirm={destroy}
     onCancel={back}
   />
 }

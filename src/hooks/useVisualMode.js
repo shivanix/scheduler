@@ -14,8 +14,7 @@ export default function useVisualMode(initial) {
   else{
     history.push(newMode);
   }
-  
-  }
+}
 
   function back() {
     if(history.length > 1){
