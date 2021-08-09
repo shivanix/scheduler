@@ -19,11 +19,12 @@ export default function Appointment(props){
     props.interview ? SHOW : EMPTY
   );
 
-  
+
 // console.log("bazingaaaaaaaaaa", props);
 // console.log("bazingaaaaaaaaaa###Mode", mode);
-console.log("indexjjjjjjjj", props.interview);
+// console.log("indexjjjjjjjj", props.interview);
 
+/*--------------------Save func------------- */
 
 function save(name, interviewer) {
   const interview = {
@@ -31,11 +32,17 @@ function save(name, interviewer) {
     interviewer
   };
   props.bookInterview(props.id, interview)
-  transition(SHOW);
+  .then(() => {
+    transition(SHOW);
+  })
+  
 
   console.log('Interview: ', interview);
   console.log('id: ', props.id);
 }
+
+/*------------------------------------------ */
+
   return (<article className="appointment">
     <Header time={props.time}/>
     {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} 
@@ -44,7 +51,7 @@ function save(name, interviewer) {
   {mode === SHOW &&
   <Show
     student={props.interview.student}
-    interviewer={props.interview.interviewer.name}
+    interviewer={props.interview.interviewer}
   />
 }
 {mode === CREATE && (
