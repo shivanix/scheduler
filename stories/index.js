@@ -51,10 +51,20 @@ storiesOf("Button", module)
   .add("Unselected", () => <DayListItem name="Monday" spots={5} />) // To define our stories, we call add() once for each of our test states to generate a story
 
 
-  .add("Selected", () => <DayListItem name="Monday" spots={5} selected />) 
-  .add("Full", () => <DayListItem name="Monday" spots={0} />)
+  .add("Selected", () => <DayListItem
+  name="Monday" 
+  spots={5} selected />) 
+
+  .add("Full", () => 
+  <DayListItem 
+  name="Monday"
+  spots={0} />)
+
   .add("Clickable", () => (
-    <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} /> // action() allows us to create a callback that appears in the actions panel when clicked
+    <DayListItem 
+    name="Tuesday" 
+    setDay={action("setDay")}
+    spots={5} /> // action() allows us to create a callback that appears in the actions panel when clicked
   ));
 
 

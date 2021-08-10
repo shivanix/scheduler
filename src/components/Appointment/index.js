@@ -12,6 +12,7 @@ import Error from "./Error";
 import useVisualMode from "hooks/useVisualMode";
 
 import"components/Appointment/styles.scss";
+import DayListItem from "components/DayListItem";
 
 /*-------------------------------Modes--------------------- */
 const EMPTY = "EMPTY";
@@ -113,6 +114,8 @@ return (<article className="appointment">
     onSave={save}
     onCancel={back}
   />
+
+ 
 )}
 
 {mode === EDIT && (

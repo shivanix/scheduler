@@ -33,9 +33,14 @@ export default function useApplicationData() {
           appointments
         });
       })
+      .then(() => {
+        const newDays = updateSpots(state.day, state.days, appointments)
+        state.days = newDays
+        console.log("#CREATING AND UPDATING SPOTS#", newDays);
+      });
   }
 
-  /*---------------------------cancelInterview func-------------------------- */
+  /*---------------------------Func cancelInterview -------------------------- */
 
 function cancelInterview (id) {
   const appointment = {
@@ -52,6 +57,11 @@ function cancelInterview (id) {
   .then((response) => {
     setState({...state,
       appointments})
+  })
+  .then(() => {
+    const newDays = updateSpots(state.day, state.days, appointments)
+    state.days = newDays
+    console.log("#DELETING AND UPDATING SPOTS#", newDays);
   });
 }
 
@@ -88,6 +98,34 @@ useEffect(() => {
 
 }, [])
 
+
+function updateSpots(dayName, days, appointments) {
+
+  //day object
+
+  const dayObj = days.find(day =>
+    day.name === dayName
+  );
+
+  let spots = 0;
+  for (const id of dayObj.appointments) {
+    const appointment = appointments[id];
+
+    if(!appointment.interview){
+      spots++;
+    }
+  }
+
+  const newDay = {...dayObj, spots};
+
+  const newDays = days.map(day => 
+    day.name === dayName ? newDay : day);
+
+    return newDays;
+}
+
+//
+console.log("#STATE <3#", state);
 return {
   state:state, 
   setDay,
