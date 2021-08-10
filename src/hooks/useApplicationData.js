@@ -92,7 +92,7 @@ useEffect(() => {
 }, [])
 
 /*--------------------------------Func updateSpots------------------- */
-console.log("State$$$", state);
+// console.log("State$$$", state);
 function updateSpots(requestType) {
 
 
