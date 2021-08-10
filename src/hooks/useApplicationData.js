@@ -7,7 +7,7 @@ export default function useApplicationData() {
   const [state, setState] = useState({
     day: "Monday",
    days: [],
-   appointments: [],
+   appointments: {},
    interviewers: {}
  });
 
@@ -25,19 +25,15 @@ export default function useApplicationData() {
       [id]: appointment
     };
     console.log(id, interview);
-
+    const days = updateSpots(`create`)
      return Axios.put(`/api/appointments/${id}`,{interview})
     .then((response) => {
         setState({
           ...state,
-          appointments
+          appointments,
+          days
         });
       })
-      .then(() => {
-        const newDays = updateSpots(state.day, state.days, appointments)
-        state.days = newDays
-        console.log("#CREATING AND UPDATING SPOTS#", newDays);
-      });
   }
 
   /*---------------------------Func cancelInterview -------------------------- */
@@ -52,17 +48,14 @@ function cancelInterview (id) {
     ...state.appointments,
     [id]: appointment
   };
-
+  const days = updateSpots();
   return Axios.delete(`/api/appointments/${id}`)
   .then((response) => {
     setState({...state,
-      appointments})
+      appointments,
+      days
+    })
   })
-  .then(() => {
-    const newDays = updateSpots(state.day, state.days, appointments)
-    state.days = newDays
-    console.log("#DELETING AND UPDATING SPOTS#", newDays);
-  });
 }
 
 const setDay = day => setState(prev => ({ ...prev, day }));
@@ -98,34 +91,28 @@ useEffect(() => {
 
 }, [])
 
+/*--------------------------------Func updateSpots------------------- */
+console.log("State$$$", state);
+function updateSpots(requestType) {
 
-function updateSpots(dayName, days, appointments) {
 
-  //day object
+  const dayIndex = state.days.findIndex(day => day.name === state.day)
 
-  const dayObj = days.find(day =>
-    day.name === dayName
-  );
+  console.log("%%%%%%##", dayIndex);
 
-  let spots = 0;
-  for (const id of dayObj.appointments) {
-    const appointment = appointments[id];
+  const days = state.days;
 
-    if(!appointment.interview){
-      spots++;
-    }
+  if (requestType === `create`) {
+    days[dayIndex].spots -= 1
+  } else {
+    days[dayIndex].spots += 1
   }
 
-  const newDay = {...dayObj, spots};
-
-  const newDays = days.map(day => 
-    day.name === dayName ? newDay : day);
-
-    return newDays;
+  return days;
 }
 
-//
-console.log("#STATE <3#", state);
+
+// console.log("#STATE <3#", state);
 return {
   state:state, 
   setDay,
