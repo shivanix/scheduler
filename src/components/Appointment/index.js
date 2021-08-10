@@ -6,6 +6,7 @@ import Empty from "./Empty";
 import Form from "./Form";
 import Status from "./Status";
 import Confirm from "./Confirm";
+import Error from "./Error";
 
 
 import useVisualMode from "hooks/useVisualMode";
@@ -19,7 +20,9 @@ const CREATE = "CREATE";
 const SAVING = "SAVING";
 const DELETING = "DELETING";
 const CONFIRM_DELETE = "CONFIRM";
-const EDIT = "EDIT"
+const EDIT = "EDIT";
+const ERROR_SAVE = "ERROR_SAVE";
+const ERROR_DELETE = "ERROR_DELETE";
 
 /*-----------------------Appointment component-------------- */
 
@@ -43,10 +46,13 @@ function save(name, interviewer) {
 
   transition(SAVING);
 
-  props.bookInterview(props.id, interview)
-  .then(() => {
-    transition(SHOW);
-  })
+  props
+   .bookInterview(props.id, interview)
+   .then(() => transition(SHOW))
+   .catch(error =>{
+    transition(ERROR_SAVE, true) 
+
+  });
   
 
   console.log('Interview: ', interview);
@@ -57,12 +63,15 @@ function save(name, interviewer) {
 
 function destroy(){
 
-  transition(DELETING);
+  transition(DELETING, true);
 
   props.cancelInterview(props.id)
-  .then (() =>{
-    transition(EMPTY);
-  })
+  .then (() =>  transition(EMPTY))
+  .catch(error => {
+    transition(ERROR_DELETE, true)
+    
+  });
+
 }
 
 /*-----------------------Func confirmDelete---------------- */
@@ -136,6 +145,21 @@ return (<article className="appointment">
     message={`Deleting`}
   />
 }
+
+{mode=== ERROR_SAVE &&
+<Error
+message={`Oops! Could not save this appointment!`}
+onClose={back}
+/>
+}
+
+{mode=== ERROR_DELETE &&
+<Error
+message={`Server doesn't want to cancel this appointment!`}
+onClose={back}
+/>
+}
+
     </article>)
 }
 
