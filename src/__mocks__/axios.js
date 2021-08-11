@@ -1,3 +1,5 @@
+
+
 const fixtures = {
   days: [
     {
@@ -54,7 +56,7 @@ const fixtures = {
 };
 
 
-/*---------------------we are mocking the get function----- */
+/*---------------------we are mocking the get function------- */
 
 // We want to control the data that is returned from the mock, so we need to provide an implementation.
 
@@ -89,30 +91,22 @@ export default {
 
 
   put: jest.fn(url => {
-    if (url === `/api/days"/${1}`) {
-      return Promise.resolve({
-        status: 204,
-        statusText: "No Content",
-        data: fixtures.days
-      });
-    }
 
-    if (url === `/api/appointments/${1}`) {
-      /* Resolve appointments data */
       return Promise.resolve({
         status: 204,
         statusText: "No Content",
         data: fixtures.appointments
       });
-    }
+    
+  }),
 
-    if (url === `/api/interviewers/${1}`) {
-      /* Resolve interviewers data */
+  delete: jest.fn(url => {
+   
       return Promise.resolve({
         status: 204,
         statusText: "No Content",
-        data: fixtures.interviewers
+        data: fixtures.appointments
       });
-    }
+  
   })
 }
