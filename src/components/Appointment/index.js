@@ -56,8 +56,8 @@ function save(name, interviewer) {
   });
   
 
-  console.log('Interview: ', interview);
-  console.log('id: ', props.id);
+  // console.log('Interview: ', interview);
+  // console.log('id: ', props.id);
 }
 
 /*---------------------Func destroy---------------------- */
