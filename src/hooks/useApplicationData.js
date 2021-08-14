@@ -58,7 +58,7 @@ function cancelInterview (id) {
   })
 }
 
-// const setDay = day => setState(prev => ({ ...prev, day }));
+const setDay = day => setState(prev => ({ ...prev, day }));
 
 
 useEffect(() => {
