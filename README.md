@@ -2,6 +2,8 @@
 
 Interview Scheduler is an interview appointment acheduling tool. It is a responsive, single-page web app built using React.
 
+!["App demo"](https://raw.githubusercontent.com/shivanix/scheduler/master/docs/demo.gif)
+
 Technologies used include [React](https://reactjs.org/), [SASS](https://sass-lang.com/), [WebPack](https://webpack.js.org/), [Babel](https://babeljs.io/), [Axios](https://www.npmjs.com/package/axios) client-side, [Node.js](https://nodejs.org), [Express](https://expressjs.com), [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API), [Postgres](https://postgresql.org) server-side, and [Storybook](https://storybook.js.org/), [Testing Library](https://testing-library.com/), [WebPack Dev Server](https://github.com/webpack/webpack-dev-server), [Jest](https://jestjs.io/), and [Cypress](https://www.cypress.io/) for development and testing.
 
 ## Setup
