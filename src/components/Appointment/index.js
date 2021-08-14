@@ -54,10 +54,6 @@ function save(name, interviewer) {
     transition(ERROR_SAVE, true) 
 
   });
-  
-
-  // console.log('Interview: ', interview);
-  // console.log('id: ', props.id);
 }
 
 /*---------------------Func destroy---------------------- */
@@ -85,9 +81,8 @@ function confirmDelete () {
 
 function edit () {
 
-transition(EDIT);
+  transition(EDIT);
 
-console.log("interviewwer", props.interviewers);
 }
 
 
@@ -152,15 +147,15 @@ return (<article className="appointment" data-testid="appointment">
 
 {mode=== ERROR_SAVE &&
 <Error
-message={`Oops! Could not save this appointment!`}
-onClose={back}
+  message={`Oops! Could not save this appointment!`}
+  onClose={back}
 />
 }
 
 {mode=== ERROR_DELETE &&
 <Error
-message={`Server doesn't want to cancel this appointment!`}
-onClose={back}
+  message={`Server doesn't want to cancel this appointment!`}
+  onClose={back}
 />
 }
 

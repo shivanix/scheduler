@@ -1,6 +1,6 @@
 # Interview Scheduler
 
-Interview Scheduler is a responsive, single-page web app design using React.
+Interview Scheduler is an interview appointment acheduling tool. It is a responsive, single-page web app built using React.
 
 Technologies used include [React](https://reactjs.org/), [SASS](https://sass-lang.com/), [WebPack](https://webpack.js.org/), [Babel](https://babeljs.io/), [Axios](https://www.npmjs.com/package/axios) client-side, [Node.js](https://nodejs.org), [Express](https://expressjs.com), [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API), [Postgres](https://postgresql.org) server-side, and [Storybook](https://storybook.js.org/), [Testing Library](https://testing-library.com/), [WebPack Dev Server](https://github.com/webpack/webpack-dev-server), [Jest](https://jestjs.io/), and [Cypress](https://www.cypress.io/) for development and testing.
 
@@ -55,7 +55,7 @@ GRANT ALL ON DATABASE scheduler_test TO scheduler_test;
 SELECT * FROM days JOIN appointments ON appointments.day_id = days.id;
 ```
 
-### **API Server Setup**
+### API Server Setup
 
 Run the API server in test mode:
 
@@ -72,6 +72,7 @@ npm test
 ```
 
 ## Running Cypress Test Framework
+(install Cypress [npm install -g cypress] if required)
 
 Make sure you are running the API server in test mode with the appropriate data
 

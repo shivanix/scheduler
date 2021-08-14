@@ -6,8 +6,6 @@ import classNames from 'classnames';
 export default function DayListItem(props) {
 let dayClass = classNames('day-list__item' ,{"day-list__item--selected": (props.selected), "day-list__item--full": (props.spots===0) })
 
-// console.log("Proppppp", props);
-
   return (
     <li data-testid="day"
     className={dayClass} onClick={() => 

@@ -12,7 +12,7 @@ let item = props.days.map((day)=>{
     selected={day.name === props.day}
     setDay={props.setDay}  />);
 });
-// console.log("itemmmmmmmm", item);
+
 return item;
   
 }
