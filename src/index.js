@@ -8,11 +8,17 @@ import Application from "components/Application";
 import axios from "axios";
 
 // Set the base URL for API calls:
+
+import axios from "axios";
+
+if (process.env.REACT_APP_API_BASE_URL) {
+  axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
+}
 // Set the base URL for API calls:
-axios.defaults.baseURL = `${new URL(
-  process.env.REACT_APP_API_BASE_URL ||
-  window.location
-).origin}/api`;
+// axios.defaults.baseURL = `${new URL(
+//   process.env.REACT_APP_API_BASE_URL ||
+//   window.location
+// ).origin}/api`;
 
 ReactDOM.render(<Application />, document.getElementById("root"));
 
