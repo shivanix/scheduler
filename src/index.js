@@ -8,10 +8,9 @@ import Application from "components/Application";
 import axios from "axios";
 
 // Set the base URL for API calls:
-axios.defaults.baseURL = `${new URL(
-  process.env.REACT_APP_API_BASE_URL ||
-  window.location
-).origin}/api`;
+if (process.env.REACT_APP_API_BASE_URL) {
+  axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
+}
 
 ReactDOM.render(<Application />, document.getElementById("root"));
 
