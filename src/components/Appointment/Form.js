@@ -5,17 +5,19 @@ import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
 
 export default function Form (props){
-  //  console.log("#FORM PROPS#", props);
-
+  
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer && props.interviewer.id || null);
   const [error, setError] = useState("");
-  
-  // console.log("ffffffffffffffffffffff", props.interviewer);
 
   function validate() {
     if (name === "") {
       setError("Student name cannot be blank");
+      return;
+    }
+
+    if(!interviewer){
+      setError("Interviewer cannot be blank");
       return;
     }
   
@@ -41,7 +43,6 @@ export default function Form (props){
   setInterviewer(interviewer_id)
   }
 
-  // console.log("%%%%%%%%----", props.interviewers);
 
 return (
   <main className="appointment__card appointment__card--create">
@@ -53,7 +54,6 @@ return (
         value={name}
       
         onChange={onChangeName}
-        // onChange={(event) => {setName(event.target.value)}}
 
         name="name"
         type="text"
@@ -68,9 +68,6 @@ return (
     interviewer={interviewer}
     setInterviewer = {onChangeInterviewer} />
   </section>
-
-  {/* 444-----  */}
-
 
   <section className="appointment__card-right">
     <section className="appointment__actions">

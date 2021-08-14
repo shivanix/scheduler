@@ -146,7 +146,7 @@ const day = getAllByTestId(container, "day").find(day =>
 });
 
 
-/**----------------------- */
+/*------------------------------Show error when failing to save----------------------- */
 it("shows the save error when failing to save an appointment", async () => {
 
    // 1. Render the Application.
@@ -187,7 +187,7 @@ it("shows the save error when failing to save an appointment", async () => {
 
 
 
-/**-------------------------- */
+/*------------------------------Show error when failing to delete--------------------- */
 it("shows the delete error when failing to delete an existing appointment", async () =>{
   // 1. Render the Application.
   const { container, debug } = render(<Application />);
@@ -224,7 +224,6 @@ it("shows the delete error when failing to delete an existing appointment", asyn
   fireEvent.click(queryByAltText(appointment, "Close"));
 
   expect(getByText(appointment, "Archie Cohen")).toBeInTheDocument();
-
  
 })
 
