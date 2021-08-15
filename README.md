@@ -65,6 +65,17 @@ GRANT ALL ON DATABASE scheduler_test TO scheduler_test;
 SELECT * FROM days JOIN appointments ON appointments.day_id = days.id;
 ```
 
+Create the file `<project-directory>/scheduler-api/.env.development` with the following:
+
+```
+PGHOST=localhost
+PGUSER=scheduler_development
+PGDATABASE=scheduler_development
+PGPASSWORD=development
+PGPORT=5432
+```
+
+
 ### API Server Setup
 
 Run the API server in test mode:
@@ -82,7 +93,7 @@ npm test
 ```
 
 ## Running Cypress Test Framework
-(install Cypress [npm install -g cypress] if required)
+(If needed for the next step; Install Cypress [npm install -g cypress])
 
 Make sure you are running the API server in test mode with the appropriate data
 
