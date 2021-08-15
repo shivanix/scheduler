@@ -58,7 +58,7 @@ const day = getAllByTestId(container, "day").find(day =>
 
 
 expect(getByText(day, "no spots remaining")).toBeInTheDocument();
-console.log(prettyDOM(day));
+// console.log(prettyDOM(day));
 // debug();
   })
 

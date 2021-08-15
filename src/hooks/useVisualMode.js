@@ -25,7 +25,6 @@ function back() {
       setHistory([ ...history]);
     }
 }
- // console.log("HISTORYYYY", history);
 
   return {mode, transition, back};
 }

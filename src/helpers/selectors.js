@@ -7,7 +7,7 @@ let filteredAppointments = [];
 //Find the days that match with the desired day
 for(let selectedDay of state.days){
   if(selectedDay.name===day){
-    // console.log("selectedDay: ", selectedDay);
+ 
     filteredDays.push(selectedDay);
   }
 }
@@ -26,9 +26,6 @@ for (const id of filteredIDs) {
   }
 }
 
-// console.log("filteredDays: ", filteredDays);
-// console.log("filteredIDs: ", filteredIDs);
-// console.log("filteredAppointments: ", filteredAppointments);
 return filteredAppointments;
 }
 
@@ -37,10 +34,6 @@ return filteredAppointments;
 /*------------------------------------------------------ */
 
 function getInterview(state, interview) {
-// console.log("stateeeeeee", state);
-// console.log("interviewObject", interview);  
-
-// console.log("dffffffffff", state.interviewers["1"]);
 
 let output = {};
 
@@ -53,8 +46,7 @@ if (state.interviewers[interview.interviewer]) {
 }
 }
 catch(err){
-  // console.log("erorrrrrrrr", err);
-  return null
+  return null;
 }
 
 }

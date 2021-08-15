@@ -29,7 +29,7 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
-    // console.log(id, interview);
+    
     const days = updateSpots(`create`)
     return Axios.put(`/api/appointments/${id}`, {
         interview
@@ -97,7 +97,7 @@ export default function useApplicationData() {
   }, [])
 
   /*--------------------------------Func updateSpots------------------- */
-  // console.log("State$$$", state);
+  
   function updateSpots(requestType) {
 
     const dayIndex = state.days.findIndex(day => day.name === state.day)

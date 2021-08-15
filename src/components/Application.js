@@ -18,9 +18,6 @@ export default function Application(props) {
     cancelInterview
   } = useApplicationData();
 
-// console.log("Stateeee", useApplicationData());
- 
-
   return (
     <main className="layout">
       <section className="sidebar">

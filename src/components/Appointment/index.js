@@ -33,10 +33,6 @@ export default function Appointment(props){
   );
 
 
-// console.log("bazingaaaaaaaaaa", props);
-// console.log("bazingaaaaaaaaaa###Mode", mode);
-// console.log("indexjjjjjjjj", props.interview);
-
 /*--------------------Func save -------------------- */
 
 function save(name, interviewer) {
