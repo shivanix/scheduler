@@ -2,7 +2,9 @@
 
 Interview Scheduler is an interview appointment acheduling tool. It is a responsive, single-page web app built using React.
 
-!["App demo"](https://raw.githubusercontent.com/shivanix/scheduler/master/docs/demo.gif)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/shivanix/scheduler/master/docs/demo.gif" alt="animated" />
+</p>
 
 !["Booked interviews"](https://github.com/shivanix/scheduler/blob/master/docs/Booked%20interviews.png)
 
