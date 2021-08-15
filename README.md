@@ -5,7 +5,7 @@ Interview Scheduler is an interview appointment acheduling tool. It is a respons
 !["Booked interviews"](https://github.com/shivanix/scheduler/blob/master/docs/Booked%20interviews.png)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/shivanix/scheduler/master/docs/demo.gif" alt="animated" width="100%"/>
+  <img src="https://raw.githubusercontent.com/shivanix/scheduler/master/docs/demo.gif" alt="animated" width="90%"/>
 </p>
 
 
